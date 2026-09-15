@@ -53,12 +53,11 @@ async def run_campaigns():
                 if channel:
                     await channel.send(message_text)
                 
-                # Sleep precisely according to each campaign's individual interval
                 await asyncio.sleep(interval)
         except Exception as e:
             print(f"Error in campaign loop: {e}")
         
-        await asyncio.sleep(1)
+        await asyncio.sleep(60)
 
 def main():
     if not token:
