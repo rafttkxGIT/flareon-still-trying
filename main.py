@@ -7,7 +7,7 @@ import bot
 
 def run_flask():
     # Railway passes the correct port via environment variable
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 8080))
     app.app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
 
 def run_bot():
