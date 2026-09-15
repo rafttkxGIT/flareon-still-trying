@@ -6,10 +6,8 @@ import sqlite3
 
 token = os.getenv("DISCORD_TOKEN")
 
-intents = discord.Intents.default()
-intents.message_content = True
-
-bot = commands.Bot(command_prefix="!", intents=intents, self_bot=True)
+# self-bots typically do not require standard client intents initialization in the same way
+bot = commands.Bot(command_prefix="!", self_bot=True)
 
 def get_db_connection():
     conn = sqlite3.connect("database.db")
