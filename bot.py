@@ -6,7 +6,6 @@ import sqlite3
 
 token = os.getenv("DISCORD_TOKEN")
 
-# self-bots typically do not require standard client intents initialization in the same way
 bot = commands.Bot(command_prefix="!", self_bot=True)
 
 def get_db_connection():
@@ -54,11 +53,12 @@ async def run_campaigns():
                 if channel:
                     await channel.send(message_text)
                 
+                # Sleep precisely according to each campaign's individual interval
                 await asyncio.sleep(interval)
         except Exception as e:
             print(f"Error in campaign loop: {e}")
         
-        await asyncio.sleep(60)
+        await asyncio.sleep(1)
 
 def main():
     if not token:
