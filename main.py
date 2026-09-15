@@ -1,9 +1,14 @@
+# Replace the contents of your main.py file on GitHub with this code:
+
+import os
 import threading
 import app
 import bot
 
 def run_flask():
-    app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)
+    # Railway passes the correct port via environment variable
+    port = int(os.environ.get("PORT", 5000))
+    app.app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
 
 def run_bot():
     bot.main()
