@@ -8,12 +8,14 @@
         h1, h2 { color: #bb86fc; }
         .container { max-width: 900px; margin: auto; }
         .card { background: #1e1e1e; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        input, button { background: #2d2d2d; border: 1px solid #444; color: #fff; padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; border-radius: 4px; }
+        input, textarea, button { background: #2d2d2d; border: 1px solid #444; color: #fff; padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; border-radius: 4px; font-family: sans-serif; }
+        textarea { resize: vertical; height: 100px; }
         button { background: #bb86fc; color: #121212; font-weight: bold; cursor: pointer; }
         button:hover { background: #9965f4; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th, td { border: 1px solid #333; padding: 8px; text-align: left; }
         th { background: #252525; }
+        td.message-cell { white-space: pre-wrap; word-break: break-word; }
         .delete-btn { background: #cf6679; color: #fff; width: auto; padding: 5px 10px; }
         .delete-btn:hover { background: #b00020; }
     </style>
@@ -27,7 +29,7 @@
             <form action="/campaign/add" method="POST">
                 <input type="text" name="name" placeholder="Campaign Name" required>
                 <input type="text" name="channel_id" placeholder="Channel ID" required>
-                <input type="text" name="message" placeholder="Message Content" required>
+                <textarea name="message" placeholder="Message Content (Line breaks are preserved)" required></textarea>
                 <input type="number" name="interval" placeholder="Interval (seconds)" required>
                 <button type="submit">Add Campaign</button>
             </form>
@@ -44,7 +46,7 @@
                 <tr>
                     <td>{{ camp.name }}</td>
                     <td>{{ camp.channel_id }}</td>
-                    <td>{{ camp.message }}</td>
+                    <td class="message-cell">{{ camp.message }}</td>
                     <td>{{ camp.interval }}s</td>
                     <td>
                         <form action="/campaign/delete/{{ camp.id }}" method="POST" style="margin:0;">
